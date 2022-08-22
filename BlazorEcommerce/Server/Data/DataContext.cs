@@ -8,6 +8,27 @@
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "Книги",
+                    Url = "books"
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Фильмы",
+                    Url = "movies"
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Видеоигры",
+                    Url = "video-games"
+                }
+                );
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
@@ -15,7 +36,8 @@
                     Title = "Код. Тайный язык информатики",
                     Description = "Научно-популярная книга американского программиста Чарльза Петцольда, в которой рассказывается, как персональные компьютеры работают на аппаратном и программном уровне.",
                     ImageUrl = "https://libroroom.ru/upload/iblock/833/18804.png",
-                    Price = 1630m
+                    Price = 1630m,
+                    CategoryId = 1
                 },
 
                 new Product
@@ -24,7 +46,8 @@
                     Title = "Чистый код. Создание, анализ и рефакторинг",
                     Description = "Эта книга посвящена хорошему программированию. Она полна реальных примеров кода. Мы будем рассматривать код с различных направлений: сверху вниз, снизу вверх и даже изнутри. Прочитав книгу, вы узнаете много нового о коде. Более того, вы научитесь отличать хороший код от плохого. Вы узнаете, как писать хороший код и как преобразовать плохой код в хороший.",
                     ImageUrl = "https://cdn1.ozone.ru/multimedia/wc1000/1023228489.jpg",
-                    Price = 780m
+                    Price = 780m,
+                    CategoryId = 1
                 },
 
                 new Product
@@ -33,10 +56,12 @@
                     Title = "Паттерны проектирования на платформе .NET",
                     Description = "Паттерны проектирования остаются важным инструментом в арсенале разработчика, поскольку они опираются на фундаментальные принципы проектирования. Тем не менее, появление новых конструкций в современных языках программирования делает одни паттерны более важными, а значимость других сводит к минимуму.",
                     ImageUrl = "https://cdn1.ozone.ru/multimedia/wc1000/1012077651.jpg",
-                    Price = 630m
+                    Price = 630m,
+                    CategoryId = 1
                 }
                 );
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
