@@ -12,7 +12,7 @@
                 .HasKey(p => new { p.ProductId, p.ProductTypeId });
 
             modelBuilder.Entity<ProductType>().HasData(
-                    new ProductType { Id = 1, Name = "Твердый переплет" },
+                    new ProductType { Id = 1, Name = "По умолчанию" },
                     new ProductType { Id = 2, Name = "Мягкая обложка" },
                     new ProductType { Id = 3, Name = "Цифровая книга" },
                     new ProductType { Id = 4, Name = "Аудиокнига" },
@@ -52,7 +52,8 @@
                     Title = "Код. Тайный язык информатики",
                     Description = "Научно-популярная книга американского программиста Чарльза Петцольда, в которой рассказывается, как персональные компьютеры работают на аппаратном и программном уровне.",
                     ImageUrl = "https://libroroom.ru/upload/iblock/833/18804.png",
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Featured = true
                 },
 
                 new Product
@@ -78,7 +79,8 @@
                     Title = "Матрица",
                     Description = "Жизнь Томаса Андерсона разделена на две части: днём он — самый обычный офисный работник, получающий нагоняи от начальства, а ночью превращается в хакера по имени Нео, и нет места в сети, куда он бы не смог проникнуть. Но однажды всё меняется. Томас узнаёт ужасающую правду о реальности.",
                     ImageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4486454/e1b83fc5-6073-4b16-8d1a-34083ee817ff/600x900",
-                    CategoryId = 2
+                    CategoryId = 2,
+                    Featured = true
                 },
                 new Product
                 {
@@ -102,7 +104,8 @@
                     Title = "Red Dead Redemption 2",
                     Description = "Артур Морган и другие подручные Датча ван дер Линде вынуждены пуститься в бега. Их банде предстоит участвовать в кражах, грабежах и перестрелках в самом сердце Америки. За ними по пятам идут федеральные агенты и лучшие в стране охотники за головами, а саму банду разрывают внутренние противоречия. Артуру предстоит выбрать, что для него важнее: его собственные идеалы или же верность людям, которые его взрастили.",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/ru/0/03/Red_Dead_Redemption_2_coverart.jpg",
-                    CategoryId = 3
+                    CategoryId = 3,
+                    Featured = true
                 },
                 new Product
                 {
