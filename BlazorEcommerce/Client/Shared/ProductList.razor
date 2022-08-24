@@ -3,7 +3,7 @@
 
 @if (ProductService.Products == null || ProductService.Products.Count == 0)
 {
-	<span>Загрузка товаров...</span>
+	<span>@ProductService.Message</span>
 }
 else
 {
@@ -30,12 +30,12 @@ else
 @code {
 	protected override void OnInitialized()
 	{
-		ProductService.ProductsChange += StateHasChanged;
+		ProductService.ProductsChanged += StateHasChanged;
 	}
 
 	public void Dispose()
 	{
-		ProductService.ProductsChange -= StateHasChanged;
+		ProductService.ProductsChanged -= StateHasChanged;
 	}
 
 	private string GetPriceText(Product product)
