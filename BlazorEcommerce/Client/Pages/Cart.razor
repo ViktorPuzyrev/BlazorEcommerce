@@ -1,5 +1,6 @@
 ﻿@page "/cart"
 @inject ICartService CartService
+@inject IOrderService OrderService
 
 <PageTitle>Корзина</PageTitle>
 
@@ -8,6 +9,10 @@
 @if (cartProducts == null || cartProducts.Count == 0)
 {
 	<span>@message</span>
+}
+else if (orderPlaced)
+{
+	<span>Спасибо за заказ! Вы можете посмотреть свои заказы <a href="orders">тут</a>.</span>
 }
 else
 {
@@ -36,15 +41,18 @@ else
 		<div class="cart-product-price">
 			Итого (@cartProducts.Count): ₽@cartProducts.Sum(product => @product.Price * product.Quantity)
 		</div>
+		<button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Оформить заказ</button>
 	</div>
 }
 
 @code {
 	List<CartProductResponse> cartProducts = null;
 	string message = "Загрузка корзины...";
+	bool orderPlaced = false;
 
 	protected override async Task OnInitializedAsync()
 	{
+		orderPlaced = false;
 		await LoadCart();
 	}
 
@@ -70,5 +78,12 @@ else
 		if (product.Quantity < 1)
 			product.Quantity = 1;
 		await CartService.UpdateQuantity(product);
+	}
+
+	private async Task PlaceOrder()
+	{
+		await OrderService.PlaceOrder();
+		await CartService.GetCartItemsCount();
+		orderPlaced = true;
 	}
 }
