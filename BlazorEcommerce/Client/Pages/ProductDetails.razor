@@ -2,6 +2,8 @@
 @inject IProductService ProductService
 @inject ICartService CartService
 
+<PageTitle>@pageTitle</PageTitle>
+
 @if (product == null)
 {
 	<span>@message</span>
@@ -46,10 +48,11 @@ else
 }
 
 @code {
-	private Product? product = null;
+	private Product? product = null;	
 	private string message = string.Empty;
 	private int currentTypeId = 1;
-
+	private string pageTitle = "Страница товара";
+	
 	[Parameter]
 	public int Id { get; set; }
 
@@ -64,6 +67,7 @@ else
 		else
 		{
 			product = result.Data;
+			pageTitle = product.Title;
 			if (product.Variants.Count > 0)
 			{
 				currentTypeId = product.Variants[0].ProductTypeId;
